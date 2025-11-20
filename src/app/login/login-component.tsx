@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { loginWithGoogle } from "./action";
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 
 const LoginComponent = () => {
   const [user, setUser] = useState<User | null>(null);
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
     const fetchUser = async () => {
